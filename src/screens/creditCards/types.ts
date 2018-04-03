@@ -1,14 +1,19 @@
 /* tslint:disable:max-classes-per-file */
 import { StringTypeAction } from '../../redux';
 
-export const TypePrefix = 'CreditCards';
-
-export class CreditCardsIncrement implements StringTypeAction {
-  type = 'CreditCardsIncrement';
-  constructor(public username: string | null) {}
+export enum Keys {
+  Increment = 'CreditCardsIncrement',
+  Decrement = 'CreditCardsDecrement',
 }
 
-export class CreditCardsDecrement implements StringTypeAction {
-  type = 'CreditCardsDecrement';
-  constructor(public password: string | null) {}
+export type ActionTypes = Increment | Decrement;
+
+export interface Increment extends StringTypeAction {
+  readonly type: Keys.Increment;
+  username: string;
+}
+
+export interface Decrement extends StringTypeAction {
+  readonly type: Keys.Decrement;
+  password: string;
 }

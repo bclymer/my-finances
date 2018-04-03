@@ -29,21 +29,13 @@ export default TabNavigator(
         switch (routeName) {
           case 'Spending':
             iconName =
-              Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
+              Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-information-circle';
             break;
           case 'CreditCards':
-            iconName =
-              Platform.OS === 'ios'
-                ? `ios-link${focused ? '' : '-outline'}`
-                : 'md-link';
+            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
             break;
           case 'Workouts':
-            iconName =
-              Platform.OS === 'ios'
-                ? `ios-options${focused ? '' : '-outline'}`
-                : 'md-options';
+            iconName = Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
         }
         return (
           <Ionicons
