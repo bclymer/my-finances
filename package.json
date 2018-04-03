@@ -1,0 +1,51 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "scripts": {
+    "ios": "exp ios",
+    "android": "exp android",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "start": "exp start",
+    "compile": "npm run lint && tsc --noEmit",
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "format": "tslint --fix ./src/**/*.{ts,tsx} && prettier --config .prettierrc --write ./src/**/*.{ts,tsx}",
+    "precommit": "lint-staged && tsc"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@expo/samples": "2.1.1",
+    "expo": "26.0.0",
+    "react": "16.3.0-alpha.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
+    "react-navigation": "^1.5.9",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/expo": "^25.0.3",
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.16",
+    "@types/react-redux": "^5.0.15",
+    "babel-jest": "22.4.1",
+    "babel-preset-react-native": "4.0.0",
+    "husky": "^0.14.3",
+    "jest-expo": "^26.0.0",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
+    "react-native-typescript-transformer": "^1.2.3",
+    "react-test-renderer": "^16.3.0-alpha.1",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.8.1"
+  },
+  "lint-staged": {
+    "{,!(node_modules|typings)}/**/*.{ts,tsx}": [
+      "npm run format",
+      "git add",
+      "npm run lint"
+    ]
+  }
+}
