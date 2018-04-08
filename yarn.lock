@@ -417,11 +417,24 @@
   version "2.0.32"
   resolved "https://registry.npmjs.org/@types/fbemitter/-/fbemitter-2.0.32.tgz#8ed204da0f54e9c8eaec31b1eec91e25132d082c"
 
-"@types/react-native@*", "@types/react-native@^0.52.16":
+"@types/react-native@*":
+  version "0.52.24"
+  resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.52.24.tgz#31b4eb0f6422f53538332f0bac41a6dde9a26df0"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-native@^0.52.16":
   version "0.52.22"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.52.22.tgz#98abf412c826a781d448346dffe5c89fce17ef28"
   dependencies:
     "@types/react" "*"
+
+"@types/react-navigation@^1.5.5":
+  version "1.5.5"
+  resolved "https://registry.npmjs.org/@types/react-navigation/-/react-navigation-1.5.5.tgz#ce6034cf4e285a4702dcc656033ec44a850b64a8"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
 
 "@types/react-redux@^5.0.15":
   version "5.0.15"
@@ -430,7 +443,13 @@
     "@types/react" "*"
     redux "^3.6.0"
 
-"@types/react@*", "@types/react@^16.0.40":
+"@types/react@*":
+  version "16.3.5"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.3.5.tgz#bd3b21285602ea7cadb4b9e0d9711d96fd5692cc"
+  dependencies:
+    csstype "^2.0.0"
+
+"@types/react@^16.0.40":
   version "16.1.0"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.1.0.tgz#6c0e9955ce73f332b4a1948d45decaf18c764c6e"
 
@@ -1859,6 +1878,10 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   dependencies:
     cssom "0.3.x"
 
+csstype@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/csstype/-/csstype-2.1.1.tgz#37b01a7a9958ef0b88167ff6678deccd732e0ae2"
+
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -2791,9 +2814,15 @@ husky@^0.14.3:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-iconv-lite@0.4.19, iconv-lite@^0.4.17, iconv-lite@~0.4.13:
+iconv-lite@0.4.19, iconv-lite@^0.4.17:
   version "0.4.19"
   resolved "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+
+iconv-lite@~0.4.13:
+  version "0.4.21"
+  resolved "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.21.tgz#c47f8733d02171189ebc4a400f3218d348094798"
+  dependencies:
+    safer-buffer "^2.1.0"
 
 image-size@^0.6.0:
   version "0.6.2"
@@ -4784,8 +4813,8 @@ react-is@^16.3.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.3.0.tgz#f0e8bfd8c09b480dd610b8639d9ed65c13601224"
 
 react-lifecycles-compat@^1.0.2:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-1.1.0.tgz#6641d0709bd5505329b5c90322147ef2d343485c"
+  version "1.1.4"
+  resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-1.1.4.tgz#fc005c72849b7ed364de20a0f64ff58ebdc2009a"
 
 react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
@@ -4932,9 +4961,15 @@ react-native-vector-icons@4.5.0:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
+react-navigation-redux-helpers@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/react-navigation-redux-helpers/-/react-navigation-redux-helpers-1.0.3.tgz#46dd9f83bf4ba74ca43d346575c169137f2eaac9"
+  dependencies:
+    invariant "^2.2.2"
+
 react-navigation@^1.5.9:
-  version "1.5.9"
-  resolved "https://registry.npmjs.org/react-navigation/-/react-navigation-1.5.9.tgz#2740fd1b0056559c1d15f12958f6b30448a2154d"
+  version "1.5.11"
+  resolved "https://registry.npmjs.org/react-navigation/-/react-navigation-1.5.11.tgz#fba6ab45d7b9987c1763a5aaac53b4f6d62b7f5c"
   dependencies:
     clamp "^1.0.1"
     hoist-non-react-statics "^2.2.0"
@@ -5310,6 +5345,10 @@ safe-regex@^1.1.0:
   resolved "https://registry.npmjs.org/safe-regex/-/safe-regex-1.1.0.tgz#40a3669f3b077d1e943d44629e157dd48023bf2e"
   dependencies:
     ret "~0.1.10"
+
+safer-buffer@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
 sane@^2.0.0:
   version "2.5.0"

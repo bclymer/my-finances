@@ -1,9 +1,15 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
-
+import { StackNavigator, addNavigationHelpers, NavigationScreenProp } from 'react-navigation';
+import { connect } from 'react-redux';
 import MainTabNavigator from './MainTabNavigator';
+import { AppState } from '../redux';
+import { addListener } from '../../App';
 
-const RootStackNavigator = StackNavigator(
+export interface NavigationProps {
+  navigation: NavigationScreenProp<any>;
+}
+
+export const RootStackNavigator = StackNavigator(
   {
     Main: {
       screen: MainTabNavigator,
@@ -15,11 +21,16 @@ const RootStackNavigator = StackNavigator(
         fontWeight: 'normal',
       },
     }),
+    initialRouteName: 'Main',
   }
 );
 
-export default class RootNavigator extends React.Component<{}, {}> {
-  render() {
-    return <RootStackNavigator />;
-  }
-}
+const AppWithNavigationState = ({ dispatch, nav }) => (
+  <RootStackNavigator navigation={addNavigationHelpers({ dispatch, state: nav, addListener })} />
+);
+
+const mapStateToProps = (state: AppState) => ({
+  nav: state.nav,
+});
+
+export default connect(mapStateToProps)(AppWithNavigationState);

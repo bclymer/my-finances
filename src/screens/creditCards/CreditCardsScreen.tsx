@@ -4,6 +4,8 @@ import { increment, decrement } from './actions';
 import { AppState } from '../../redux/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { NavigationStackScreenOptions, NavigationScreenProps } from 'react-navigation';
+import { NavigationProps } from '../../navigation/RootNavigation';
 
 export interface StateProps {
   readonly count: number;
@@ -14,9 +16,24 @@ export interface ActionProps {
   readonly decrement: () => void;
 }
 
-class CreditCardsScreen extends React.Component<StateProps & ActionProps, {}> {
-  static navigationOptions = {
-    title: 'Credit Cards',
+class CreditCardsScreen extends React.Component<StateProps & ActionProps & NavigationProps, {}> {
+  static navigationOptions = (navigation: NavigationScreenProps): NavigationStackScreenOptions => {
+    const { params } = navigation.navigation.state;
+    return {
+      title: 'Credit Cards',
+      // tslint:disable-next-line jsx-no-lambda
+      headerRight: <Button title="Info" onPress={() => params.handleSave()} />,
+    };
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({
+      handleSave: () => this.saveDetails(),
+    });
+  }
+
+  saveDetails = () => {
+    alert('Save Details');
   };
 
   render() {
