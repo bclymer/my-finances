@@ -1,26 +1,59 @@
-import { Keys, ActionTypes } from './types';
+import { Keys, CreditCardActionTypes } from './types';
 
-export interface Workouts {
-  count: number;
+export interface CreditCards {
+  cards: CreditCard[];
+  editingCard: CreditCard | null;
 }
 
-const initialState = {
-  count: 0,
+export class CreditCard {
+  name: string;
+  constructor(public id: string) {}
+}
+
+const initialState: CreditCards = {
+  cards: [],
+  editingCard: null,
 };
 
-export default function workoutsReducer(state: Workouts = initialState, action: ActionTypes): Workouts {
+export default function workoutsReducer(state: CreditCards = initialState, action: CreditCardActionTypes): CreditCards {
   switch (action.type) {
-    case Keys.Increment:
+    case Keys.Add:
       return {
         ...state,
-        count: state.count + 1,
+        editingCard: new CreditCard(uuidv4()),
       };
-    case Keys.Decrement:
+    case Keys.Edit:
       return {
         ...state,
-        count: state.count - 1,
+        editingCard: action.cardToEdit,
+      };
+    case Keys.CancelEdit:
+      return {
+        ...state,
+        editingCard: null,
+      };
+    case Keys.Save:
+      return {
+        ...state,
+        editingCard: null,
+        cards: state.cards.concat(state.editingCard),
+      };
+    case Keys.UpdateEdit:
+      return {
+        ...state,
+        editingCard: action.card,
       };
     default:
       return state;
   }
+}
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    // tslint:disable-next-line:no-bitwise
+    const r = (Math.random() * 16) | 0;
+    // tslint:disable-next-line:no-bitwise
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }

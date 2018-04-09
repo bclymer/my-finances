@@ -1,16 +1,35 @@
-import { Increment, Decrement } from './types';
+import { Add, Edit, CancelEdit, Save, UpdateEdit } from './types';
 import { Keys } from './types';
+import { CreditCard } from './reducer';
 
-export function increment(): Increment {
+export function add(): Add {
   return {
-    type: Keys.Increment,
-    username: 'yay',
+    type: Keys.Add,
   };
 }
 
-export function decrement(): Decrement {
+export function edit(cardToEdit: CreditCard): Edit {
   return {
-    type: Keys.Decrement,
-    password: 'yay',
+    type: Keys.Edit,
+    cardToEdit,
+  };
+}
+
+export function cancelEdit(): CancelEdit {
+  return {
+    type: Keys.CancelEdit,
+  };
+}
+
+export function save(): Save {
+  return {
+    type: Keys.Save,
+  };
+}
+
+export function updateEdit(card: CreditCard): UpdateEdit {
+  return {
+    type: Keys.UpdateEdit,
+    card,
   };
 }

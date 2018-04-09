@@ -1,19 +1,35 @@
 /* tslint:disable:max-classes-per-file */
 import { StringTypeAction } from '../../redux';
+import { CreditCard } from './reducer';
 
 export enum Keys {
-  Increment = 'CreditCardsIncrement',
-  Decrement = 'CreditCardsDecrement',
+  Add = 'CreditCardAdd',
+  Edit = 'CreditCardEdit',
+  CancelEdit = 'CreditCardCancelEdit',
+  UpdateEdit = 'CreditCardUpdateEdit',
+  Save = 'CreditCardSave',
 }
 
-export type ActionTypes = Increment | Decrement;
+export type CreditCardActionTypes = Add | Edit | CancelEdit | Save | UpdateEdit;
 
-export interface Increment extends StringTypeAction {
-  readonly type: Keys.Increment;
-  username: string;
+export interface Add extends StringTypeAction {
+  readonly type: Keys.Add;
 }
 
-export interface Decrement extends StringTypeAction {
-  readonly type: Keys.Decrement;
-  password: string;
+export interface Edit extends StringTypeAction {
+  readonly type: Keys.Edit;
+  readonly cardToEdit: CreditCard;
+}
+
+export interface CancelEdit extends StringTypeAction {
+  readonly type: Keys.CancelEdit;
+}
+
+export interface Save extends StringTypeAction {
+  readonly type: Keys.Save;
+}
+
+export interface UpdateEdit extends StringTypeAction {
+  readonly type: Keys.UpdateEdit;
+  readonly card: CreditCard;
 }
