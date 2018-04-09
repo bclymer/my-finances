@@ -8,9 +8,10 @@ export enum Keys {
   CancelEdit = 'CreditCardCancelEdit',
   UpdateEdit = 'CreditCardUpdateEdit',
   Save = 'CreditCardSave',
+  Delete = 'CreditCardDelete',
 }
 
-export type CreditCardActionTypes = Add | Edit | CancelEdit | Save | UpdateEdit;
+export type CreditCardActionTypes = Add | Edit | CancelEdit | Save | UpdateEdit | Delete;
 
 export interface Add extends StringTypeAction {
   readonly type: Keys.Add;
@@ -31,5 +32,10 @@ export interface Save extends StringTypeAction {
 
 export interface UpdateEdit extends StringTypeAction {
   readonly type: Keys.UpdateEdit;
+  readonly card: CreditCard;
+}
+
+export interface Delete extends StringTypeAction {
+  readonly type: Keys.Delete;
   readonly card: CreditCard;
 }

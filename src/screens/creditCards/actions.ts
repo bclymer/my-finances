@@ -1,4 +1,4 @@
-import { Add, Edit, CancelEdit, Save, UpdateEdit } from './types';
+import { Add, Edit, CancelEdit, Save, UpdateEdit, Delete } from './types';
 import { Keys } from './types';
 import { CreditCard } from './reducer';
 
@@ -30,6 +30,13 @@ export function save(): Save {
 export function updateEdit(card: CreditCard): UpdateEdit {
   return {
     type: Keys.UpdateEdit,
+    card,
+  };
+}
+
+export function deleteCard(card: CreditCard): Delete {
+  return {
+    type: Keys.Delete,
     card,
   };
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, Button, Modal, View } from 'react-native';
-import { add, edit, cancelEdit, save, updateEdit } from './actions';
+import { ScrollView, Button, Modal, StyleSheet, SafeAreaView } from 'react-native';
+import { add, edit, cancelEdit, save, updateEdit, deleteCard } from './actions';
 import { AppState } from '../../redux/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,6 +20,7 @@ export interface ActionProps {
   readonly cancelEdit: () => void;
   readonly updateEdit: (card: CreditCardType) => void;
   readonly save: () => void;
+  readonly deleteCard: (card: CreditCardType) => void;
 }
 
 class CreditCardsScreen extends React.Component<StateProps & ActionProps & NavigationProps, {}> {
@@ -32,6 +33,11 @@ class CreditCardsScreen extends React.Component<StateProps & ActionProps & Navig
     };
   };
 
+  constructor(props) {
+    super(props);
+    this.deleteCard = this.deleteCard.bind(this);
+  }
+
   componentDidMount() {
     this.props.navigation.setParams({ addNewCard: () => this.addNewCard() });
   }
@@ -40,9 +46,21 @@ class CreditCardsScreen extends React.Component<StateProps & ActionProps & Navig
     this.props.add();
   };
 
+  deleteCard = (card: CreditCardType) => {
+    this.props.deleteCard(card);
+  };
+
   renderCreditCards() {
     return this.props.cards.map(card => {
-      return <CreditCard key={card.id} card={card} isEditable={false} onCardUpdated={this.props.updateEdit} />;
+      return (
+        <CreditCard
+          key={card.id}
+          card={card}
+          isEditable={false}
+          onCardUpdated={this.props.updateEdit}
+          onCardDeleted={this.deleteCard}
+        />
+      );
     });
   }
 
@@ -54,6 +72,7 @@ class CreditCardsScreen extends React.Component<StateProps & ActionProps & Navig
           card={this.props.editingCard}
           isEditable={true}
           onCardUpdated={this.props.updateEdit}
+          onCardDeleted={this.deleteCard}
         />
       );
     }
@@ -62,14 +81,16 @@ class CreditCardsScreen extends React.Component<StateProps & ActionProps & Navig
 
   render() {
     return (
-      <View>
+      <SafeAreaView style={styles.container}>
         <Modal visible={this.props.editingCard != null}>
-          {this.renderEditingCard()}
-          <Button title="Cancel" onPress={this.props.cancelEdit} />
-          <Button title="Save" onPress={this.props.save} />
+          <SafeAreaView style={styles.safeArea}>
+            {this.renderEditingCard()}
+            <Button title="Cancel" onPress={this.props.cancelEdit} />
+            <Button title="Save" onPress={this.props.save} />
+          </SafeAreaView>
         </Modal>
         <ScrollView>{this.renderCreditCards()}</ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -88,7 +109,21 @@ function mapDispatchToProps(dispatch): ActionProps {
     cancelEdit: bindActionCreators(cancelEdit, dispatch),
     save: bindActionCreators(save, dispatch),
     updateEdit: bindActionCreators(updateEdit, dispatch),
+    deleteCard: bindActionCreators(deleteCard, dispatch),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreditCardsScreen);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  modal: {
+    marginTop: 50,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#ddd',
+  },
+});

@@ -43,6 +43,13 @@ export default function workoutsReducer(state: CreditCards = initialState, actio
         ...state,
         editingCard: action.card,
       };
+    case Keys.Delete:
+      return {
+        ...state,
+        cards: state.cards.filter(card => {
+          return card.id !== action.card.id;
+        }),
+      };
     default:
       return state;
   }
