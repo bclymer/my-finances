@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   safeArea: {
+    width: '100%',
     flex: 1,
-    backgroundColor: '#ddd',
+    height: 200,
   },
 });

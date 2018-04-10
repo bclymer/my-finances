@@ -28,10 +28,21 @@ export default class CreditCard extends React.Component<Props, {}> {
     this.props.onCardDeleted(card);
   }
 
+  maybeRenderDeleteButton() {
+    if (!this.props.isEditable) {
+      return (
+        <CardAction>
+          <Button title="Delete" onPress={this.cardDeleted} />
+        </CardAction>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
-      <Card>
-        <CardContent>
+      <Card styles={styles.card}>
+        <CardContent styles={styles.cardContent}>
           <TextInput
             style={styles.textInput}
             placeholder="Name…"
@@ -40,9 +51,7 @@ export default class CreditCard extends React.Component<Props, {}> {
             onChangeText={this.nameUpdated}
           />
         </CardContent>
-        <CardAction>
-          <Button title="Delete" onPress={this.cardDeleted} />
-        </CardAction>
+        {this.maybeRenderDeleteButton()}
       </Card>
     );
   }
@@ -50,11 +59,19 @@ export default class CreditCard extends React.Component<Props, {}> {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 20,
+    width: '100%',
+  },
+  cardContent: {
+    width: '100%',
   },
   textInput: {
     width: '100%',
+    alignSelf: 'stretch',
     height: 50,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   button: {
     marginRight: 10,
