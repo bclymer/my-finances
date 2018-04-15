@@ -8,7 +8,11 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true /* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/24573 */,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true
   },
   "exclude": ["node_modules"]
 }

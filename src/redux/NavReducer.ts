@@ -1,5 +1,6 @@
 import { RootStackNavigator } from '../navigation/RootNavigation';
 import { NavigationActions } from 'react-navigation';
+import { AnyAction } from 'redux';
 
 const router = RootStackNavigator.router;
 
@@ -14,7 +15,7 @@ const initialNavState = router.getStateForAction(
   })
 );
 
-const NavReducer = (state = initialNavState, action) => {
+const NavReducer = (state = initialNavState, action: AnyAction) => {
   return router.getStateForAction(action, state) || state;
 };
 

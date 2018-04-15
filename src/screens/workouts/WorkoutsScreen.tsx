@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, Button } from 'react-native';
 import { increment, decrement } from './actions';
-import { AppState } from '../../redux/';
+import { AppState, Dispatch } from '../../redux/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationStackScreenOptions, NavigationScreenProps } from 'react-navigation';
@@ -22,7 +22,7 @@ class WorkoutsScreen extends React.Component<StateProps & ActionProps & Navigati
     return {
       title: 'Workouts',
       // tslint:disable-next-line jsx-no-lambda
-      headerRight: <Button title="Info" onPress={() => params.handleSave()} />,
+      headerRight: <Button title="Info" onPress={() => params && params.handleSave()} />,
     };
   };
 
@@ -51,7 +51,7 @@ function mapStateToProps(state: AppState): StateProps {
   };
 }
 
-function mapDispatchToProps(dispatch): ActionProps {
+function mapDispatchToProps(dispatch: Dispatch): ActionProps {
   return {
     increment: bindActionCreators(increment, dispatch),
     decrement: bindActionCreators(decrement, dispatch),

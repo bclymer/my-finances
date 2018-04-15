@@ -64,8 +64,6 @@ class Separator extends React.PureComponent<{}> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
     margin: 5,
   },

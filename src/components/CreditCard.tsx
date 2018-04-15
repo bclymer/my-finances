@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, StyleSheet, Button } from 'react-native';
+import { TextInput, StyleSheet, Button, Picker, View } from 'react-native';
 import { CreditCard as CreditCardType } from '../screens/creditCards/reducer';
 import { Card, CardContent, CardAction } from './Card';
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default class CreditCard extends React.Component<Props, {}> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.nameUpdated = this.nameUpdated.bind(this);
     this.cardDeleted = this.cardDeleted.bind(this);
@@ -39,6 +39,31 @@ export default class CreditCard extends React.Component<Props, {}> {
     return null;
   }
 
+  renderRewardsRows() {
+    return this.props.card.rewards.map((reward, index) => {
+      return (
+        <View key={index} style={{ flex: 1, flexDirection: 'row' }}>
+          <TextInput
+            // style={styles.textInput}
+            placeholder="Cash Rewards"
+            editable={this.props.isEditable}
+            value={reward.name}
+            onChangeText={this.nameUpdated}
+          />
+          <Picker prompt="Percent" selectedValue={reward.cashBack}>
+            {this.renderPercentPickerItems()}
+          </Picker>
+        </View>
+      );
+    });
+  }
+
+  renderPercentPickerItems() {
+    return Array(3).map(index => {
+      return <Picker.Item label={index.toString()} value={index} key={index} />;
+    });
+  }
+
   render() {
     return (
       <Card styles={styles.card}>
@@ -50,6 +75,7 @@ export default class CreditCard extends React.Component<Props, {}> {
             value={this.props.card.name}
             onChangeText={this.nameUpdated}
           />
+          {this.renderRewardsRows()}
         </CardContent>
         {this.maybeRenderDeleteButton()}
       </Card>
@@ -60,6 +86,7 @@ export default class CreditCard extends React.Component<Props, {}> {
 const styles = StyleSheet.create({
   card: {
     width: '100%',
+    height: 200,
   },
   cardContent: {
     width: '100%',

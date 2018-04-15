@@ -1,3 +1,4 @@
+// tslint:disable:max-classes-per-file
 import { Keys, CreditCardActionTypes } from './types';
 
 export interface CreditCards {
@@ -6,8 +7,14 @@ export interface CreditCards {
 }
 
 export class CreditCard {
-  name: string;
+  name?: string;
+  rewards: CreditCardReward[] = [];
   constructor(public id: string) {}
+}
+
+export class CreditCardReward {
+  name?: string;
+  cashBack: number = 1;
 }
 
 const initialState: CreditCards = {
@@ -33,6 +40,10 @@ export default function workoutsReducer(state: CreditCards = initialState, actio
         editingCard: null,
       };
     case Keys.Save:
+      if (state.editingCard == null) {
+        // Invalid state. Maybe log here?
+        return state;
+      }
       return {
         ...state,
         editingCard: null,

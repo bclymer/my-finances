@@ -413,9 +413,24 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
+"@types/expo__vector-icons@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.npmjs.org/@types/expo__vector-icons/-/expo__vector-icons-6.2.1.tgz#2b283cfabb65ffe4bdebba84f3458e8775f62b7b"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    "@types/react-native-vector-icons" "*"
+
 "@types/fbemitter@*":
   version "2.0.32"
   resolved "https://registry.npmjs.org/@types/fbemitter/-/fbemitter-2.0.32.tgz#8ed204da0f54e9c8eaec31b1eec91e25132d082c"
+
+"@types/react-native-vector-icons@*":
+  version "4.6.0"
+  resolved "https://registry.npmjs.org/@types/react-native-vector-icons/-/react-native-vector-icons-4.6.0.tgz#121bfcedffca18ffdf25f7db8ab9a8d88c932666"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
 
 "@types/react-native@*":
   version "0.52.24"
@@ -4962,8 +4977,8 @@ react-native-vector-icons@4.5.0:
     yargs "^9.0.0"
 
 react-navigation-redux-helpers@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/react-navigation-redux-helpers/-/react-navigation-redux-helpers-1.0.3.tgz#46dd9f83bf4ba74ca43d346575c169137f2eaac9"
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/react-navigation-redux-helpers/-/react-navigation-redux-helpers-1.0.5.tgz#b4b3ddeccf9f996f305a1b2e5475065c2b3e6c56"
   dependencies:
     invariant "^2.2.2"
 

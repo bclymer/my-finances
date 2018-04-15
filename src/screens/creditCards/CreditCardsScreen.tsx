@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, Button, Modal, StyleSheet, SafeAreaView } from 'react-native';
 import { add, edit, cancelEdit, save, updateEdit, deleteCard } from './actions';
-import { AppState } from '../../redux/';
+import { AppState, Dispatch } from '../../redux/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationStackScreenOptions, NavigationScreenProps } from 'react-navigation';
@@ -23,17 +23,19 @@ export interface ActionProps {
   readonly deleteCard: (card: CreditCardType) => void;
 }
 
-class CreditCardsScreen extends React.Component<StateProps & ActionProps & NavigationProps, {}> {
+type Props = StateProps & ActionProps & NavigationProps;
+
+class CreditCardsScreen extends React.Component<Props, {}> {
   static navigationOptions = (navigation: NavigationScreenProps): NavigationStackScreenOptions => {
     const { params } = navigation.navigation.state;
     return {
       title: 'Credit Cards',
       // tslint:disable-next-line jsx-no-lambda
-      headerRight: <Button title="Add" onPress={() => params.addNewCard()} />,
+      headerRight: <Button title="Add" onPress={() => params && params.addNewCard()} />,
     };
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.deleteCard = this.deleteCard.bind(this);
   }
@@ -102,7 +104,7 @@ function mapStateToProps(state: AppState): StateProps {
   };
 }
 
-function mapDispatchToProps(dispatch): ActionProps {
+function mapDispatchToProps(dispatch: Dispatch): ActionProps {
   return {
     add: bindActionCreators(add, dispatch),
     edit: bindActionCreators(edit, dispatch),

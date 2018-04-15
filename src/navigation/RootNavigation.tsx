@@ -2,7 +2,7 @@ import React from 'react';
 import { StackNavigator, addNavigationHelpers, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 import MainTabNavigator from './MainTabNavigator';
-import { AppState } from '../redux';
+import { AppState, Dispatch } from '../redux';
 import { addListener } from '../../App';
 
 export interface NavigationProps {
@@ -25,7 +25,7 @@ export const RootStackNavigator = StackNavigator(
   }
 );
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
+const AppWithNavigationState = ({ dispatch, nav }: { dispatch: Dispatch; nav: any }) => (
   <RootStackNavigator navigation={addNavigationHelpers({ dispatch, state: nav, addListener })} />
 );
 
